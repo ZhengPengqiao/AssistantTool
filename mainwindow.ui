@@ -15,6 +15,21 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>1</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>1</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>1</number>
+    </property>
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
@@ -41,18 +56,22 @@ QTabWidget::tab-bar {
        <enum>QTabWidget::West</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="SettingForm" name="settingForm">
        <attribute name="title">
         <string>全局配置</string>
        </attribute>
       </widget>
+      <widget class="CreateColorForm" name="createcolorForm">
+       <attribute name="title">
+        <string>颜色文件</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -60,6 +79,12 @@ QTabWidget::tab-bar {
    <class>SettingForm</class>
    <extends>QWidget</extends>
    <header>settingform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CreateColorForm</class>
+   <extends>QWidget</extends>
+   <header>createcolorform.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreateColorForm</class>
+ <widget class="QWidget" name="CreateColorForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>820</width>
+    <height>478</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="7" column="0">
+    <widget class="QLabel" name="statusBar">
+     <property name="text">
+      <string>提示信息：颜色文件</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,1,0,1,0,0,0">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>颜色格式：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox_Format">
+       <item>
+        <property name="text">
+         <string>FMT_NV12</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FMT_UYVY</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>FMT_YUYV</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>WxH:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox_width">
+       <property name="maximum">
+        <number>4096</number>
+       </property>
+       <property name="value">
+        <number>1280</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>x</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox_height">
+       <property name="maximum">
+        <number>4096</number>
+       </property>
+       <property name="value">
+        <number>720</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>生成帧数：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox_frameNum">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>4096</number>
+       </property>
+       <property name="value">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>生成YUV数据</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>文件路径：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_folderName">
+       <property name="text">
+        <string>~/</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_fileName">
+       <property name="text">
+        <string>1.nv12</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_folderSelect">
+       <property name="text">
+        <string>选择文件夹</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="4" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,2">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>image</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_showMess">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>createYuvFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>818</x>
+     <y>24</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_Format</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>comboBox_Format_IndexChange(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>32</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>220</x>
+     <y>11</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_width</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>spinBox_width_OnClick(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>346</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_height</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>spinBox_height_OnClick(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>591</x>
+     <y>51</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBox_frameNum</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>spinBox_frameNum_OnClick(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>680</x>
+     <y>31</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>800</x>
+     <y>1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_folderSelect</sender>
+   <signal>clicked()</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>pushButton_fileSelect_OnClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>764</x>
+     <y>77</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>817</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_fileName</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>CreateColorForm</receiver>
+   <slot>lineEdit_fileName_OnChange(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>526</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>549</x>
+     <y>99</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>createYuvFile()</slot>
+  <slot>comboBox_Format_IndexChange(QString)</slot>
+  <slot>spinBox_width_OnClick(int)</slot>
+  <slot>spinBox_height_OnClick(int)</slot>
+  <slot>spinBox_frameNum_OnClick(int)</slot>
+  <slot>pushButton_fileSelect_OnClick()</slot>
+  <slot>lineEdit_fileName_OnChange(QString)</slot>
+ </slots>
+</ui>
