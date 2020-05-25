@@ -2,6 +2,7 @@
 #define SETTINGFORM_H
 
 #include <QWidget>
+#include <QString>
 
 namespace Ui {
 class SettingForm;
@@ -14,6 +15,8 @@ class SettingForm : public QWidget
 public:
     explicit SettingForm(QWidget *parent = nullptr);
     ~SettingForm();
+    static SettingForm *instances();
+    QString version;
 
 private:
     Ui::SettingForm *ui;

@@ -139,15 +139,15 @@ void CreateColorForm::frame_render(int frameCount)
 
 void CreateColorForm::comboBox_Format_IndexChange(QString str)
 {
-    if( ui->comboBox_Format->currentText() == "FMT_NV12" )
+    if( str == "FMT_NV12" )
     {
         fmt = FMT_NV12;
     }
-    else if( ui->comboBox_Format->currentText() == "FMT_UYVY" )
+    else if( str == "FMT_UYVY" )
     {
         fmt = FMT_UYVY;
     }
-    else if( ui->comboBox_Format->currentText() == "FMT_YUYV" )
+    else if( str == "FMT_YUYV" )
     {
         fmt = FMT_YUYV;
     }
