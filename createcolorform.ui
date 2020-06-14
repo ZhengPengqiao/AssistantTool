@@ -134,7 +134,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit_folderName">
        <property name="text">
-        <string>~/</string>
+        <string>./</string>
        </property>
       </widget>
      </item>
@@ -191,7 +191,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>809</x>
-     <y>48</y>
+     <y>40</y>
     </hint>
     <hint type="destinationlabel">
      <x>818</x>
@@ -206,8 +206,8 @@
    <slot>comboBox_Format_IndexChange(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>32</y>
+     <x>150</x>
+     <y>38</y>
     </hint>
     <hint type="destinationlabel">
      <x>220</x>
@@ -270,8 +270,8 @@
    <slot>pushButton_fileSelect_OnClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>764</x>
-     <y>77</y>
+     <x>809</x>
+     <y>71</y>
     </hint>
     <hint type="destinationlabel">
      <x>817</x>
@@ -286,8 +286,8 @@
    <slot>lineEdit_fileName_OnChange(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>526</x>
-     <y>72</y>
+     <x>728</x>
+     <y>69</y>
     </hint>
     <hint type="destinationlabel">
      <x>549</x>

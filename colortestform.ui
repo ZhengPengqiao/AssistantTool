@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ColorTestForm</class>
+ <widget class="QWidget" name="ColorTestForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>844</width>
+    <height>448</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,6">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>宽x高</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_width">
+           <property name="maximum">
+            <number>10240</number>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>1280</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>x</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBox_height">
+           <property name="maximum">
+            <number>10240</number>
+           </property>
+           <property name="singleStep">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>720</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>颜色格式：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_Format">
+           <item>
+            <property name="text">
+             <string>RGBA8888</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RGB888</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>RGB565</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>图像样式：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_imageFormat">
+           <item>
+            <property name="text">
+             <string>Gradient</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>BlackAndWhiteGrid</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Chessboard</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ColoredBar</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Solid</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_rgb">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>R:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_Red">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>255</string>
+           </property>
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>G:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_Green">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>B:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_Blue">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="readOnly">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_updateShow">
+         <property name="text">
+          <string>更新显示</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_savefile">
+         <property name="text">
+          <string>创建文件</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>611</width>
+          <height>377</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_image">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>文件路径：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_folderName">
+       <property name="text">
+        <string>./</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_fileName">
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit_externName">
+       <property name="text">
+        <string>.rgba8888</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_fileSelect">
+       <property name="text">
+        <string>选择文件夹</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="statusBar">
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_updateShow</sender>
+   <signal>clicked()</signal>
+   <receiver>ColorTestForm</receiver>
+   <slot>pushButton_updateShow_onClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1</x>
+     <y>133</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_savefile</sender>
+   <signal>clicked()</signal>
+   <receiver>ColorTestForm</receiver>
+   <slot>pushButton_savefile_onClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>177</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>205</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_fileSelect</sender>
+   <signal>clicked()</signal>
+   <receiver>ColorTestForm</receiver>
+   <slot>pushButton_fileSelect_OnClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>793</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>849</x>
+     <y>62</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_Format</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>ColorTestForm</receiver>
+   <slot>comboBox_Format_onChange(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_imageFormat</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>ColorTestForm</receiver>
+   <slot>comboBox_imageFormat_onClicked(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>147</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-3</x>
+     <y>325</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButton_updateShow_onClicked()</slot>
+  <slot>pushButton_savefile_onClicked()</slot>
+  <slot>pushButton_fileSelect_OnClick()</slot>
+  <slot>comboBox_Format_onChange(QString)</slot>
+  <slot>comboBox_imageFormat_onClicked(QString)</slot>
+ </slots>
+</ui>

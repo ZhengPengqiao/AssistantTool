@@ -131,6 +131,7 @@ void CreateColorForm::frame_render(int frameCount)
         //frameBuff
         ret = write(fb, frameBuff, frameSize);
         qDebug() << "frame_render write ret = " << ret;
+
         frame++;
     }
 }
