@@ -17,6 +17,9 @@ public:
     int clearFrameBuff(char* indata, int x, int y, int w, int h, int r, int g, int b, int bps);
     int testColor(char * indata, int x, int y, int w, int h, int br, int bg, int bb, int bps);
     int checkerBoard(char *indata, int x, int y, int w, int h, int bps);
+    int testSolidColor(char * indata, int x, int y, int w, int h, int br, int bg, int bb, int bps);
+    int testDefinitionColor(char * indata, int x, int y, int w, int h, int br, int bg, int bb, int bps);
+    int testUrandom(char *indata, int x, int y, int w, int h, int bps);
     QString toExternalFormat(QString fmt);
     int toBps(QString fmt);
     QImage::Format toQtFormat(QString fmt);
@@ -27,6 +30,7 @@ public:
     int r;
     int g;
     int b;
+    int a;
     int uc;
     int l_num;
     int xres;

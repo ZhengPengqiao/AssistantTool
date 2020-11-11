@@ -67,7 +67,7 @@
          <item>
           <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>颜色格式：</string>
+            <string>颜色格式(B_R未要求)：</string>
            </property>
           </widget>
          </item>
@@ -110,6 +110,21 @@
            </item>
            <item>
             <property name="text">
+             <string>Definition</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Urandom</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SolidGradient</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>BlackAndWhiteGrid</string>
             </property>
            </item>
@@ -147,7 +162,7 @@
             <bool>false</bool>
            </property>
            <property name="text">
-            <string>255</string>
+            <string>0</string>
            </property>
            <property name="readOnly">
             <bool>false</bool>
@@ -191,6 +206,20 @@
            </property>
            <property name="readOnly">
             <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>A:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_alpha">
+           <property name="text">
+            <string>0</string>
            </property>
           </widget>
          </item>
@@ -238,8 +267,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>611</width>
-          <height>368</height>
+          <width>585</width>
+          <height>362</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">

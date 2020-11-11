@@ -17,9 +17,10 @@ ColorTestForm::ColorTestForm(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    r = 0;
-    g = 0;
-    b = 0;
+    r = ui->lineEdit_Red->text().toInt();
+    g = ui->lineEdit_Green->text().toInt();
+    b = ui->lineEdit_Blue->text().toInt();
+    a = ui->lineEdit_alpha->text().toInt();
     uc = 0;
     l_num = 8;
     xres = ui->spinBox_width->value();
@@ -92,7 +93,7 @@ int ColorTestForm::clearFrameBuff(char *indata, int x, int y, int w, int h, int 
                     indata[fbw*4*(i+y)+(j+x)*4] = (rgb>>24)&0xFF;
                     indata[fbw*4*(i+y)+(j+x)*4+1] = (rgb>>16)&0xFF;
                     indata[fbw*4*(i+y)+(j+x)*4+2] = (rgb>>8)&0xFF;
-                    indata[fbw*4*(i+y)+(j+x)*4+3] = (rgb)&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
                 break;
                 case 24:
                     indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
@@ -113,7 +114,7 @@ int ColorTestForm::clearFrameBuff(char *indata, int x, int y, int w, int h, int 
 
 /*
  * 函数名称 : testColor
- * 函数介绍 : 测试颜色FrameBuffer
+ * 函数介绍 : 测试颜色FrameBuffer - 渐变色
  * 参数介绍 : data:FrameBuffer相关信息， x,y,w,h：清空的矩形，  br,bg,bb:使用的颜色,
  *           bps:framebuffer的bps
  * 返回值   : -1:失败，  0：成功
@@ -160,7 +161,7 @@ int ColorTestForm::testColor(char * indata, int x, int y, int w, int h, int br, 
                     indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
                     indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
                     indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
-                    indata[fbw*4*(i+y)+(j+x)*4+3] = 255;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
                 break;
                 case 24:
                     indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
@@ -182,8 +183,451 @@ int ColorTestForm::testColor(char * indata, int x, int y, int w, int h, int br, 
 
 
 /*
+ * 函数名称 : testUrandom
+ * 函数介绍 : 测试颜色FrameBuffer - 随机数
+ * 参数介绍 : fbInfo:FrameBuffer相关信息， x,y,w,h：清空的矩形
+ *           bps:framebuffer的bps
+ * 返回值   : -1:失败，  0：成功
+ */
+int ColorTestForm::testUrandom(char *indata, int x, int y, int w, int h, int bps)
+{
+    unsigned int rgb = 0;
+    int drawW = 0;
+    int drawH = 0;
+    int fbw = xres;
+    int fbh = yres;
+    int rgFlag = 0;
+    int r = 0;
+    int g = 0;
+    int b = 0;
+    int a = 0;
+
+    if ( x + w > fbw )
+    {
+        drawW = fbw-x;
+    }
+    else
+    {
+        drawW = w;
+    }
+
+    if ( y + h > fbh )
+    {
+        drawH = fbh-y;
+    }
+    else
+    {
+        drawH = h;
+    }
+
+    for( int i = 0; i < drawH; i++ )
+    {
+        for( int j = 0; j < drawW; j++ )
+        {
+            r = rand()/255;
+            g = rand()/255;
+            b = rand()/255;
+            a = rand()/255;
+            switch( bps )
+            {
+                case 32:
+                    indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
+
+                break;
+                case 24:
+                    indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+1] = g&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+2] = r&0xFF;
+                break;
+                case 16:
+                    rgb = (((r << 8) & 0xF800) |
+                        ((g << 3) & 0x7E0) |
+                        ((b >> 3)));
+                    indata[fbw*2*(i+y)+(j+x)*2] = (rgb)&0xFF;
+                    indata[fbw*2*(i+y)+(j+x)*2+1] = (rgb>>8)&0xFF;
+                break;
+            }
+        }
+    }
+    return 0;
+}
+
+
+/*
+ * 函数名称 : testSolidColor
+ * 函数介绍 : 测试单颜色FrameBuffer - 单色渐变色
+ * 参数介绍 : fbInfo:FrameBuffer相关信息， x,y,w,h：清空的矩形，  br,bg,bb:使用的颜色,
+ *           bps:framebuffer的bps
+ * 返回值   : -1:失败，  0：成功
+ */
+int ColorTestForm::testSolidColor(char * indata, int x, int y, int w, int h, int br, int bg, int bb, int bps)
+{
+    unsigned int rgb = 0;
+    int drawW = 0;
+    int drawH = 0;
+    int fbw = xres;
+    int fbh = yres;
+    int r = br, g = bg, b = bb;
+    int rgFlag = 0;
+
+    if ( x + w > fbw )
+    {
+        drawW = fbw-x;
+    }
+    else
+    {
+        drawW = w;
+    }
+
+    if ( y + h > fbh )
+    {
+        drawH = fbh-y;
+    }
+    else
+    {
+        drawH = h;
+    }
+
+    for( int i = 0; i < drawH; i++ )
+    {
+        r = br;
+        g = bg;
+        b = bb;
+        for( int j = 0; j < drawW; j++ )
+        {
+            if ( i <= drawH/3 )
+            {
+                r = (unsigned int)(br + j*255/drawW)%255;
+            }
+            else if ( drawH/3 && i <= drawH*2/3 )
+            {
+                g = (unsigned int)(bg + j*255/drawW)%255;
+            }
+            else if ( drawH*2/3 < i )
+            {
+                b = (unsigned int)(bb + j*255/drawW)%255;
+            }
+
+            switch( bps )
+            {
+                case 32:
+                    indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
+                break;
+                case 24:
+                    indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+1] = g&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+2] = r&0xFF;
+                break;
+                case 16:
+                    rgb = (((r << 8) & 0xF800) |
+                        ((g << 3) & 0x7E0) |
+                        ((b >> 3)));
+                    indata[fbw*2*(i+y)+(j+x)*2] = (rgb)&0xFF;
+                    indata[fbw*2*(i+y)+(j+x)*2+1] = (rgb>>8)&0xFF;
+                break;
+            }
+        }
+    }
+    return 0;
+}
+
+
+/*
+ * 函数名称 : testDefinitionColor
+ * 函数介绍 : 条纹清晰度侧视图FrameBuffer
+ * 参数介绍 : fbInfo:FrameBuffer相关信息， x,y,w,h：清空的矩形，  br,bg,bb:使用的颜色,
+ *           bps:framebuffer的bps
+ * 返回值   : -1:失败，  0：成功
+ */
+int ColorTestForm::testDefinitionColor(char * indata, int x, int y, int w, int h, int br, int bg, int bb, int bps)
+{
+    unsigned int rgb = 0;
+    int drawW = 0;
+    int drawH = 0;
+    int fbw = xres;
+    int fbh = yres;
+    int r = br, g = bg, b = bb;
+    int rgFlag = 0;
+
+    if ( x + w > fbw )
+    {
+        drawW = fbw-x;
+    }
+    else
+    {
+        drawW = w;
+    }
+
+    if ( y + h > fbh )
+    {
+        drawH = fbh-y;
+    }
+    else
+    {
+        drawH = h;
+    }
+
+    // Update 1/4
+    for( int i = 0; i < drawH/4; i++ )
+    {
+        r = br;
+        g = bg;
+        b = bb;
+        int jStep = 1;
+        int reTime = 0;
+        int jOld = 0;
+
+        for( int j = 0; j < drawW; j++ )
+        {
+            if( j > jOld && j <= (jOld+jStep) )
+            {
+                r=g=b=255;
+            }
+            else if( j > (jOld+jStep) && j <= (jOld+2*jStep) )
+            {
+                r=g=b=0;
+            }
+
+            if( j == (jOld+2*jStep))
+            {
+                jOld = jOld+2*jStep;
+                if( reTime++ > 4 )
+                {
+                    reTime = 0;
+                    jStep++;
+                }
+            }
+
+
+            switch( bps )
+            {
+                case 32:
+                    indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
+                break;
+                case 24:
+                    indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+1] = g&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+2] = r&0xFF;
+                break;
+                case 16:
+                    rgb = (((r << 8) & 0xF800) |
+                        ((g << 3) & 0x7E0) |
+                        ((b >> 3)));
+                    indata[fbw*2*(i+y)+(j+x)*2] = (rgb)&0xFF;
+                    indata[fbw*2*(i+y)+(j+x)*2+1] = (rgb>>8)&0xFF;
+                break;
+            }
+        }
+    }
+
+    // Update 1/4~2/4
+    for( int i = drawH/4; i < drawH/4*2; i++ )
+    {
+        r = br;
+        g = bg;
+        b = bb;
+        int jStep = 1;
+        int reTime = 0;
+        int jOld = drawW;
+
+        for( int j = drawW; j > 0; j-- )
+        {
+            if( j < jOld && j >= (jOld-jStep) )
+            {
+                r=g=b=255;
+            }
+            else if( j < (jOld-jStep) && j >= (jOld-2*jStep) )
+            {
+                r=g=b=0;
+            }
+
+            if( j == (jOld-2*jStep))
+            {
+                jOld = jOld-2*jStep;
+                if( reTime++ > 4 )
+                {
+                    reTime = 0;
+                    jStep++;
+                }
+            }
+
+
+            switch( bps )
+            {
+                case 32:
+                    indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
+                break;
+                case 24:
+                    indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+1] = g&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+2] = r&0xFF;
+                break;
+                case 16:
+                    rgb = (((r << 8) & 0xF800) |
+                        ((g << 3) & 0x7E0) |
+                        ((b >> 3)));
+                    indata[fbw*2*(i+y)+(j+x)*2] = (rgb)&0xFF;
+                    indata[fbw*2*(i+y)+(j+x)*2+1] = (rgb>>8)&0xFF;
+                break;
+            }
+        }
+    }
+
+    // Update 2/4 3/4
+    for( int i = drawH/4*2; i < drawH/4*3; i++ )
+    {
+        r = br;
+        g = bg;
+        b = bb;
+        int jStep = 1;
+        int jOld = 0;
+        int jFlag = 0;
+
+        for( int j = 0; j < drawW; j++ )
+        {
+            if( j > jOld && j <= (jOld+jStep) )
+            {
+                r=g=b=255;
+            }
+            else if( j > (jOld+jStep) && j <= (jOld+2*jStep) )
+            {
+                r=g=b=0;
+            }
+
+            if( j == (jOld+2*jStep))
+            {
+                jOld = jOld+2*jStep;
+                if( jStep == 5 )
+                {
+                    jFlag = 0;
+                }
+                else if( jStep == 1 )
+                {
+                    jFlag = 1;
+                }
+
+                if(jFlag)
+                {
+                    jStep++;
+                }
+                else
+                {
+                    jStep--;
+                }
+            }
+
+
+            switch( bps )
+            {
+                case 32:
+                    indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
+                break;
+                case 24:
+                    indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+1] = g&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+2] = r&0xFF;
+                break;
+                case 16:
+                    rgb = (((r << 8) & 0xF800) |
+                        ((g << 3) & 0x7E0) |
+                        ((b >> 3)));
+                    indata[fbw*2*(i+y)+(j+x)*2] = (rgb)&0xFF;
+                    indata[fbw*2*(i+y)+(j+x)*2+1] = (rgb>>8)&0xFF;
+                break;
+            }
+        }
+    }
+
+    // Update 3/4~4/4
+    for( int i = drawH/4*3; i < drawH; i++ )
+    {
+        r = br;
+        g = bg;
+        b = bb;
+
+        int jStep = 1;
+        int jOld = drawW;
+        int jFlag = 0;
+
+        for( int j = drawW; j > 0; j-- )
+        {
+            if( j < jOld && j >= (jOld-jStep) )
+            {
+                r=g=b=255;
+            }
+            else if( j < (jOld-jStep) && j >= (jOld-2*jStep) )
+            {
+                r=g=b=0;
+            }
+
+            if( j == (jOld-2*jStep))
+            {
+                jOld = jOld-2*jStep;
+                if( jStep == 10 )
+                {
+                    jFlag = 0;
+                }
+                else if( jStep == 1 )
+                {
+                    jFlag = 1;
+                }
+
+                if(jFlag)
+                {
+                    jStep++;
+                }
+                else
+                {
+                    jStep--;
+                }
+            }
+
+            switch( bps )
+            {
+                case 32:
+                    indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
+                break;
+                case 24:
+                    indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+1] = g&0xFF;
+                    indata[fbw*3*(i+y)+(j+x)*3+2] = r&0xFF;
+                break;
+                case 16:
+                    rgb = (((r << 8) & 0xF800) |
+                        ((g << 3) & 0x7E0) |
+                        ((b >> 3)));
+                    indata[fbw*2*(i+y)+(j+x)*2] = (rgb)&0xFF;
+                    indata[fbw*2*(i+y)+(j+x)*2+1] = (rgb>>8)&0xFF;
+                break;
+            }
+        }
+    }
+
+    return 0;
+}
+
+
+/*
  * 函数名称 : checkerBoard
- * 函数介绍 : 测试颜色FrameBuffer
+ * 函数介绍 : 测试颜色FrameBuffer - 棋盘格
  * 参数介绍 : data:FrameBuffer相关信息， x,y,w,h：清空的矩形
  *           bps:framebuffer的bps
  * 返回值   : -1:失败，  0：成功
@@ -231,7 +675,7 @@ int ColorTestForm::checkerBoard(char *indata, int x, int y, int w, int h, int bp
                     indata[fbw*4*(i+y)+(j+x)*4]   = b&0xFF;
                     indata[fbw*4*(i+y)+(j+x)*4+1] = g&0xFF;
                     indata[fbw*4*(i+y)+(j+x)*4+2] = r&0xFF;
-                    indata[fbw*4*(i+y)+(j+x)*4+3] = 0;
+                    indata[fbw*4*(i+y)+(j+x)*4+3] = a;
                 break;
                 case 24:
                 indata[fbw*3*(i+y)+(j+x)*3]   = b&0xFF;
@@ -267,7 +711,7 @@ void ColorTestForm::pushButton_updateShow_onClicked()
     xres = ui->spinBox_width->value();
     yres = ui->spinBox_height->value();
     dataSize = xres*yres*toPixelBytes(ui->comboBox_Format->currentText());
-
+    fileName = ui->lineEdit_folderName->text()+"/"+ui->lineEdit_fileName->text()+ui->lineEdit_externName->text();
     uc = toImageFormat(ui->comboBox_imageFormat->currentText());
 
     if( data != nullptr )
@@ -318,6 +762,18 @@ void ColorTestForm::pushButton_updateShow_onClicked()
                 clearFrameBuff(data, i*len, 0, xres/l_num, yres,  0x00, 0x00, 0x00, toBps(ui->comboBox_Format->currentText()));
             }
         }
+    }
+    else if(uc == 5)
+    {
+        testUrandom(data, 0, 0, xres, yres, toBps(ui->comboBox_Format->currentText()));
+    }
+    else if ( uc == 6 )
+    {
+        testSolidColor(data, 0, 0, xres, yres, r, g, b, toBps(ui->comboBox_Format->currentText()));
+    }
+    else if ( uc == 7 )
+    {
+        testDefinitionColor(data, 0, 0, xres, yres, r, g, b, toBps(ui->comboBox_Format->currentText()));
     }
 
     // 将抓取到的帧，转换为QImage格式。QImage::Format_RGBA8888不同的摄像头用不同的格式。
@@ -494,6 +950,7 @@ QImage::Format ColorTestForm::toQtFormat(QString str)
  */
 int ColorTestForm::toImageFormat(QString str)
 {
+    ui->lineEdit_fileName->setText(str);
     int imagefmt;
     if( str == "Gradient" )
     {
@@ -514,6 +971,18 @@ int ColorTestForm::toImageFormat(QString str)
     else if( str == "BlackAndWhiteGrid" )
     {
         imagefmt = 4;
+    }
+    else if( str == "Urandom" )
+    {
+        imagefmt = 5;
+    }
+    else if( str == "SolidGradient" )
+    {
+        imagefmt = 6;
+    }
+    else if( str == "Definition" )
+    {
+        imagefmt = 7;
     }
     else
     {
