@@ -4,5 +4,6 @@
         <file>assert/buttonback_active.png</file>
         <file>assert/buttonback.png</file>
         <file>qt.qss</file>
+        <file>assert/2021-07-31-15-32-32.png</file>
     </qresource>
 </RCC>

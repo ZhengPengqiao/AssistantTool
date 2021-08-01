@@ -1,0 +1,1160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TimmingForm</class>
+ <widget class="QWidget" name="TimmingForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1254</width>
+    <height>744</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="1,10,1,20">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,1,0,1,1,1,1,1">
+       <item>
+        <widget class="QComboBox" name="comboBox"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>保存参数</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>从comm删除</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>添加到comm</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_Time">
+         <property name="text">
+          <string>按时间轴计算</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_Param">
+         <property name="text">
+          <string>按参数计算</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_Timming">
+         <property name="text">
+          <string>按时序计算</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="lineEdit_Param_HBlank">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="8">
+        <widget class="QLabel" name="label_19">
+         <property name="text">
+          <string>VS_FPS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>V_Active:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="7">
+        <widget class="QLineEdit" name="lineEdit_Param_HS_HPS">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(211, 215, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_Param_VActive">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_Param_HActive">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_Param_PCLK">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>V_F:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="9">
+        <widget class="QLineEdit" name="lineEdit_Param_HS">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="label_12">
+         <property name="text">
+          <string>H_T:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLineEdit" name="lineEdit_Param_HT">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>H_Blank:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="8">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>V_S:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>PCLK:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>V_B:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="8">
+        <widget class="QLabel" name="label_13">
+         <property name="text">
+          <string>H_S:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="lineEdit_Param_VBlank">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QLineEdit" name="lineEdit_Param_HB">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLineEdit" name="lineEdit_Param_VT">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="7">
+        <widget class="QLineEdit" name="lineEdit_Param_VF">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QLineEdit" name="lineEdit_Param_VB">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>H_Active:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>H_F:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QLabel" name="label_10">
+         <property name="text">
+          <string>H_B:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>V_Blank:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="9">
+        <widget class="QLineEdit" name="lineEdit_Param_VS">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="7">
+        <widget class="QLineEdit" name="lineEdit_Param_HF">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(114, 159, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>V_T:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="9">
+        <widget class="QLineEdit" name="lineEdit_Param_VS_FPS">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(211, 215, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="label_18">
+         <property name="text">
+          <string>HS_HPS</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>T5_hbp: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLabel" name="label_21">
+         <property name="text">
+          <string>T5_hspw:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="lineEdit_Param_t5_hbp">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(211, 215, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLineEdit" name="lineEdit_Param_t5_hspw">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(211, 215, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4">
+        <widget class="QLabel" name="label_22">
+         <property name="text">
+          <string>T5_vbp:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="5">
+        <widget class="QLineEdit" name="lineEdit_Param_t5_vbp">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(211, 215, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="7">
+        <widget class="QLineEdit" name="lineEdit_Param_t5_vspw">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(211, 215, 207);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QLabel" name="label_23">
+         <property name="text">
+          <string>T5_vspw:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>-80</x>
+          <y>-38</y>
+          <width>1298</width>
+          <height>736</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="1" column="0">
+          <widget class="QFrame" name="frame">
+           <property name="minimumSize">
+            <size>
+             <width>1280</width>
+             <height>718</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>1280</width>
+             <height>720</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QFrame#frame{
+ 		border-image: url(:/assert/2021-07-31-15-32-32.png);
+}
+</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QLineEdit" name="lineEdit_Timming_VT">
+            <property name="geometry">
+             <rect>
+              <x>690</x>
+              <y>80</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_VB">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>130</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_VBlank">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>1160</x>
+              <y>80</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_VF">
+            <property name="geometry">
+             <rect>
+              <x>920</x>
+              <y>130</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_VS">
+            <property name="geometry">
+             <rect>
+              <x>1120</x>
+              <y>130</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_HB">
+            <property name="geometry">
+             <rect>
+              <x>330</x>
+              <y>560</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_HT">
+            <property name="geometry">
+             <rect>
+              <x>770</x>
+              <y>500</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_HBlank">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>1030</x>
+              <y>500</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_HF">
+            <property name="geometry">
+             <rect>
+              <x>760</x>
+              <y>560</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_HS">
+            <property name="geometry">
+             <rect>
+              <x>960</x>
+              <y>560</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_PCLK">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>120</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_14">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>130</y>
+              <width>41</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>PCLK:</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T1">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>260</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T1</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T1">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>260</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T2">
+            <property name="geometry">
+             <rect>
+              <x>220</x>
+              <y>260</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T2</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T2">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>260</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T3">
+            <property name="geometry">
+             <rect>
+              <x>1040</x>
+              <y>250</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T3</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T4">
+            <property name="geometry">
+             <rect>
+              <x>1060</x>
+              <y>250</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T4</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T5">
+            <property name="geometry">
+             <rect>
+              <x>1090</x>
+              <y>250</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T5</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T3">
+            <property name="geometry">
+             <rect>
+              <x>920</x>
+              <y>250</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T5">
+            <property name="geometry">
+             <rect>
+              <x>1120</x>
+              <y>250</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T4">
+            <property name="geometry">
+             <rect>
+              <x>1020</x>
+              <y>280</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T6">
+            <property name="geometry">
+             <rect>
+              <x>260</x>
+              <y>690</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T6</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T7">
+            <property name="geometry">
+             <rect>
+              <x>340</x>
+              <y>690</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T7</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T8">
+            <property name="geometry">
+             <rect>
+              <x>870</x>
+              <y>670</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T8</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T9">
+            <property name="geometry">
+             <rect>
+              <x>920</x>
+              <y>660</y>
+              <width>21</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T9</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T10">
+            <property name="geometry">
+             <rect>
+              <x>970</x>
+              <y>660</y>
+              <width>31</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T10</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T6">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>690</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T7">
+            <property name="geometry">
+             <rect>
+              <x>370</x>
+              <y>690</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T8">
+            <property name="geometry">
+             <rect>
+              <x>750</x>
+              <y>670</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T9">
+            <property name="geometry">
+             <rect>
+              <x>910</x>
+              <y>690</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T10">
+            <property name="geometry">
+             <rect>
+              <x>1030</x>
+              <y>670</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_15">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>50</y>
+              <width>101</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>PCLK十个周期:</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T11">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>80</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Time_T12">
+            <property name="geometry">
+             <rect>
+              <x>410</x>
+              <y>80</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T12">
+            <property name="geometry">
+             <rect>
+              <x>370</x>
+              <y>80</y>
+              <width>31</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T12</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_T11">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>80</y>
+              <width>31</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(78, 154, 6);</string>
+            </property>
+            <property name="text">
+             <string>T11</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_HActive">
+            <property name="geometry">
+             <rect>
+              <x>560</x>
+              <y>560</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_16">
+            <property name="geometry">
+             <rect>
+              <x>530</x>
+              <y>560</y>
+              <width>31</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(114, 159, 207);</string>
+            </property>
+            <property name="text">
+             <string>H_A</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_Timming_VActive">
+            <property name="geometry">
+             <rect>
+              <x>630</x>
+              <y>130</y>
+              <width>113</width>
+              <height>25</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(252, 233, 79);</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_17">
+            <property name="geometry">
+             <rect>
+              <x>590</x>
+              <y>130</y>
+              <width>31</width>
+              <height>17</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(114, 159, 207);</string>
+            </property>
+            <property name="text">
+             <string>V_A</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="statusBar">
+     <property name="text">
+      <string>提示状态：</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_Timming</sender>
+   <signal>clicked()</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_Timming_OnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1205</x>
+     <y>37</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Param</sender>
+   <signal>clicked()</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_Param_OnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1001</x>
+     <y>41</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1052</x>
+     <y>70</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_SaveParam_OnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>350</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>493</x>
+     <y>4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Time</sender>
+   <signal>clicked()</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_Time_OnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>873</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>834</x>
+     <y>-6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_AddComm_OnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>780</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>-4</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_Comm_CurrectItemChange_OnClicked(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>47</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>118</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>TimmingForm</receiver>
+   <slot>pushButton_RemoveComm_OnClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>492</x>
+     <y>24</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>3</x>
+     <y>100</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pushButton_Timming_OnClicked()</slot>
+  <slot>pushButton_Param_OnClicked()</slot>
+  <slot>pushButton_SaveParam_OnClicked()</slot>
+  <slot>pushButton_Time_OnClicked()</slot>
+  <slot>pushButton_AddComm_OnClicked()</slot>
+  <slot>pushButton_Comm_CurrectItemChange_OnClicked(int)</slot>
+  <slot>pushButton_RemoveComm_OnClicked()</slot>
+ </slots>
+</ui>

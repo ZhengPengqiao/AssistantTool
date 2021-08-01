@@ -30,20 +30,26 @@ SOURCES += \
     customtabstyle.cpp \
     settingform.cpp \
     createcolorform.cpp \
-    colortestform.cpp
+    colortestform.cpp \
+    yuvpaletteform.cpp \
+    timmingform.cpp
 
 HEADERS += \
         mainwindow.h \
     customtabstyle.h \
     settingform.h \
     createcolorform.h \
-    colortestform.h
+    colortestform.h \
+    yuvpaletteform.h \
+    timmingform.h
 
 FORMS += \
         mainwindow.ui \
     settingform.ui \
     createcolorform.ui \
-    colortestform.ui
+    colortestform.ui \
+    yuvpaletteform.ui \
+    timmingform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
