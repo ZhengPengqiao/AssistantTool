@@ -119,8 +119,12 @@ void TimmingForm::loadFileToCombo()
         stream >> itemName >> lcd->param_t5_hspw;
         stream >> itemName >> lcd->param_t5_vbp;
         stream >> itemName >> lcd->param_t5_vspw;
-        list.append(lcd);
-        ui->comboBox->addItem(lcd->name);
+
+        if( lcd->param_pclk != 0 && lcd->param_vt != 0 && lcd->param_ht != 0 )
+        {
+            list.append(lcd);
+            ui->comboBox->addItem(lcd->name);
+        }
     }
     file.close();
 
