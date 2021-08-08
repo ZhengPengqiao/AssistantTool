@@ -83,6 +83,11 @@ QTabWidget::tab-bar {
         <string>时序计算</string>
        </attribute>
       </widget>
+      <widget class="AscAnalyseForm" name="ascAnalyseForm">
+       <attribute name="title">
+        <string>Asc解析</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -118,6 +123,12 @@ QTabWidget::tab-bar {
    <class>TimmingForm</class>
    <extends>QWidget</extends>
    <header>timmingform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AscAnalyseForm</class>
+   <extends>QWidget</extends>
+   <header>ascanalyseform.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

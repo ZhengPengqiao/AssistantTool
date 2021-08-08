@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = AssistantTool
 TEMPLATE = app
@@ -32,7 +32,10 @@ SOURCES += \
     createcolorform.cpp \
     colortestform.cpp \
     yuvpaletteform.cpp \
-    timmingform.cpp
+    timmingform.cpp \
+    datautil.cpp \
+    qcustomplot.cpp \
+    ascanalyseform.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +44,10 @@ HEADERS += \
     createcolorform.h \
     colortestform.h \
     yuvpaletteform.h \
-    timmingform.h
+    timmingform.h \
+    datautil.h \
+    qcustomplot.h \
+    ascanalyseform.h
 
 FORMS += \
         mainwindow.ui \
@@ -49,7 +55,8 @@ FORMS += \
     createcolorform.ui \
     colortestform.ui \
     yuvpaletteform.ui \
-    timmingform.ui
+    timmingform.ui \
+    ascanalyseform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
