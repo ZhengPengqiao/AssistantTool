@@ -37,6 +37,33 @@ QStringList DataUtil::readAscFile(QString fileName)
     return dataList;
 }
 
+/**
+ * @brief DataUtil::getAscVersion
+ * @param strList:所有asc数据
+ * @return
+ */
+QString DataUtil::getAscVersion(QStringList strList)
+{
+    QString line;
+    QString version;
+    if( strList.count() <= 0)
+    {
+        return "null";
+    }
+
+    for ( int i = 0; i < 100 && i < strList.count(); i++ )
+    {
+        line = strList.at(i);
+        line = line.simplified();
+        if( line.contains("version") )
+        {
+            version = line.split(QRegExp(" version ")).at(1);
+        }
+    }
+
+    qDebug() << "asc version:" << version;
+    return version;
+}
 
 /**
  * @brief DataUtil::readAscSignal
@@ -51,8 +78,9 @@ QStringList DataUtil::readAscFile(QString fileName)
  * @param Rx:是否检测Tx方向， True检测，False不检测
  * @return:过滤出来的数据个数
  */
-int DataUtil::readAscSignal(QStringList strList, int signalIndex, int signalID, int signalOffset, int signalLen, QVector<double> *time, QVector<double> *val, bool Tx, bool Rx)
+int DataUtil::readAscSignal(QStringList strList, int signalIndex, int idOffset, int signalID, int signalOffset, int signalLen, QVector<double> *time, QVector<double> *val, bool Tx, bool Rx)
 {
+    QString version;
     int value = -1;
     if( time == nullptr || val == nullptr || strList.count() <= 0)
     {
@@ -67,13 +95,13 @@ int DataUtil::readAscSignal(QStringList strList, int signalIndex, int signalID, 
         line = line.simplified();
         if( line.contains("version") )
         {
-            qDebug() << line.split(QRegExp(" version ")).at(1);
+            version = line.split(QRegExp(" version ")).at(1);
         }
         else if( (Tx && line.contains(" Tx ")) || (Rx && line.contains(" Rx ")) )
         {
             // 只有Tx为True才会进行后面contains Tx判断，  Rx为True才会进行contains Rx判断
             QStringList list = line.split(" ");
-            if( list.at(4).toInt(nullptr, 16) == signalID )
+            if( list.at(idOffset).toInt(nullptr, 16) == signalID )
             {
                 qDebug() << list;
                 time->append(list.at(0).toDouble());
@@ -84,6 +112,8 @@ int DataUtil::readAscSignal(QStringList strList, int signalIndex, int signalID, 
 
     }
 
+    qDebug() << "asc version:" << version;
+
     return time->count();
 }
 
@@ -92,7 +122,7 @@ int DataUtil::readAscSignal(QStringList strList, int signalIndex, int signalID, 
  * 从字符串列表中获取对应的数据
  * @param strList:字符串列表
  * @param signalIndex:真实有效数据偏移位置
- * @param offset:提取数 = 据在有效数据 中的偏移位置
+ * @param offset:提取数 = 据在有效数据中 位的偏移位置， 位高端 0bxxx0 0000,xxx就是offset=7 len=3
  * @param len:待提取的位数
  * @return :提取出来的数值， >0:正常-1:异常
  */
@@ -103,24 +133,25 @@ int DataUtil::getArrayOffsetValue(QStringList strList, int signalIndex, int offs
     int lenLeft = len; // 还需要提取多少位
     int arrayIndex = 0; // 当前需要处理字节在 array中的位置
     int arrayBitIndex = 0;  // 当前需要处理位bit在 array中的位置
+    int l_offset = offset - len + 1; // 计算开始位的最低位
 
     unsigned int byteVal = 0;
 
-    qDebug() << "list.size:" << strList.count() << " signalIndex:" << signalIndex << " offset:" << offset << " len:"<< len;
+    qDebug() << "list.size:" << strList.count() << " signalIndex:" << signalIndex << " l_offset:" << l_offset << " len:"<< len;
     while(lenLeft) // 提取需要的位，直到提取完成
     {
-        arrayIndex = offset/8; // 当前需要处理字节在array中的位置
-        arrayBitIndex = offset%8;  // 当前需要处理位在 array中的位置, 且此Byte可以处理的位数// 当前需要处理位bit在 array中的位置
+        arrayIndex = (l_offset)/8; // 当前需要处理字节在array中的位置
+        arrayBitIndex = (l_offset)%8;  // 当前需要处理位在 array中的位置, 且此Byte可以处理的位数// 当前需要处理位bit在 array中的位置
 
-
-        qDebug() << "lenLeft:" << lenLeft << " arrayIndex:" << arrayIndex << " 8-arrayBitIndex:" << 8-arrayBitIndex << \
-                    " offset:" << offset << " arrayBitIndex:" << arrayBitIndex << " value:" << value;
 
         if( strList.count() < arrayIndex+signalIndex )
         {
             return -1;
         }
         byteVal = strList.at(arrayIndex+signalIndex).toInt(nullptr,16);
+
+        qDebug() << "lenLeft:" << lenLeft << " arrayIndex:" << arrayIndex << " 8-arrayBitIndex:" << 8-arrayBitIndex << \
+                    " l_offset:" << l_offset << " arrayBitIndex:" << arrayBitIndex << " value:" << value << " byteVal:" << byteVal;
 
         if( (8-arrayBitIndex) >= lenLeft )
         {
@@ -141,7 +172,7 @@ int DataUtil::getArrayOffsetValue(QStringList strList, int signalIndex, int offs
                 }
 
                 lenLeft--;
-                offset++;
+                l_offset++;
             }
         }
         else if( ((8-arrayBitIndex) <= lenLeft) && (arrayBitIndex != 0) )
@@ -149,6 +180,7 @@ int DataUtil::getArrayOffsetValue(QStringList strList, int signalIndex, int offs
             // 当前字节的bit位数 不够满足需要提取的位数
             for( int j = 0; j < (8-arrayBitIndex); j++ )
             {
+                qDebug() << "j:" << j;
                 // 按照对应位为0/1进行处理
                 if( byteVal & (1<<(j+arrayBitIndex)) )
                 {
@@ -162,7 +194,7 @@ int DataUtil::getArrayOffsetValue(QStringList strList, int signalIndex, int offs
                 }
 
                 lenLeft--;
-                offset++;
+                l_offset++;
             }
         }
         else
@@ -170,7 +202,7 @@ int DataUtil::getArrayOffsetValue(QStringList strList, int signalIndex, int offs
             value += (byteVal<<valueOffset);
             valueOffset += 8;
             lenLeft -= 8;
-            offset += 8;
+            l_offset += 8;
         }
     }
 

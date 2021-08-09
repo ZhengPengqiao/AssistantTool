@@ -18,13 +18,13 @@
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="2,5" rowminimumheight="0,0">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0,0,0,0">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_11">
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Can数据内容偏移调整:</string>
+          <string>Can数据偏移:</string>
          </property>
         </widget>
        </item>
@@ -32,6 +32,34 @@
         <widget class="QLineEdit" name="lineEdit_signalDataOffset">
          <property name="text">
           <string>10</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>CanID偏移：</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_signalIDOffset">
+         <property name="text">
+          <string>4</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QCheckBox" name="checkBox_OffsetByVersion">
+         <property name="text">
+          <string>按版本自动检测偏移位置</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -49,7 +77,7 @@
        <item>
         <widget class="QLineEdit" name="lineEdit_signalID">
          <property name="text">
-          <string>244</string>
+          <string>29F</string>
          </property>
         </widget>
        </item>
@@ -67,7 +95,7 @@
        <item>
         <widget class="QLineEdit" name="lineEdit_signalOffset">
          <property name="text">
-          <string>0</string>
+          <string>8</string>
          </property>
         </widget>
        </item>
@@ -85,7 +113,7 @@
        <item>
         <widget class="QLineEdit" name="lineEdit_signalLen">
          <property name="text">
-          <string>8</string>
+          <string>1</string>
          </property>
         </widget>
        </item>
@@ -172,7 +200,7 @@
          <item>
           <widget class="QLineEdit" name="lineEdit">
            <property name="text">
-            <string>/home/zpq/WorkSpace/workspaces/QtStudy/assert/文字图片不符_30s.asc</string>
+            <string>Please Open Asc FIle</string>
            </property>
           </widget>
          </item>

@@ -19,6 +19,7 @@ public:
      * @brief DataUtil::readAscSignal
      * @param strList:所有asc数据
      * @param signalIndex:有效数据的偏移位置
+     * @param idOffset:ID的偏移位置
      * @param signalID:信号ID
      * @param signalOffset:信号值的偏移量
      * @param signalLen:信号值占用位数
@@ -28,8 +29,21 @@ public:
      * @param Rx:是否检测Tx方向， True检测，False不检测
      * @return:过滤出来的数据个数
      */
-    static int readAscSignal(QStringList strList, int signalIndex, int signalID, int signalOffset, int signalLen, QVector<double> *time, QVector<double> *val, bool Tx, bool Rx);
+    static int readAscSignal(QStringList strList, int signalIndex, int idOffset, int signalID, int signalOffset, int signalLen, QVector<double> *time, QVector<double> *val, bool Tx, bool Rx);
+
+    /**
+     * @brief DataUtil::getArrayOffsetValue
+     * 从字符串列表中获取对应的数据
+     * @param strList:字符串列表
+     * @param signalIndex:真实有效数据偏移位置
+     * @param offset:提取数 = 据在有效数据中 位的偏移位置， 位高端 0bxxx0 0000,xxx就是offset=7 len=3
+     * @param len:待提取的位数
+     * @return :提取出来的数值， >0:正常-1:异常
+     */
     static int getArrayOffsetValue(QStringList strList,  int signalIndex, int offset, int len);
+
+
+    static QString getAscVersion(QStringList strList);
 };
 
 #endif // DATAUTIL_H

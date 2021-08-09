@@ -17,7 +17,11 @@ public:
     explicit AscAnalyseForm(QWidget *parent = 0);
     ~AscAnalyseForm();
 
-    void setupPlot(int lineNum, QVector<double> times, QVector<double> values);
+    void setupPlot(QString name, int lineNum, QVector<double> times, QVector<double> values);
+
+    void dealOffsetByAscVersion();
+    int dataOffset;
+    int idOffset;
 
 public slots:
     void pushButton_UpdateFile_OnCliecked();

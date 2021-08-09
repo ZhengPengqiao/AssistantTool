@@ -15,6 +15,10 @@ AscAnalyseForm::AscAnalyseForm(QWidget *parent) :
     QStringList labels = QObject::trUtf8("信号ID,信号开始位,信号位长度, 方向TxRx").simplified().split(",");
     model->setHorizontalHeaderLabels(labels);
     ui->tableView->setModel(model);
+
+    // 有效数据的偏移位置
+    int dataOffset = ui->lineEdit_signalDataOffset->text().toInt();
+    int idOffset = ui->lineEdit_signalIDOffset->text().toInt();
 }
 
 AscAnalyseForm::~AscAnalyseForm()
@@ -23,22 +27,73 @@ AscAnalyseForm::~AscAnalyseForm()
 }
 
 
-void AscAnalyseForm::setupPlot(int lineNum, QVector<double> times, QVector<double> values)
+void AscAnalyseForm::dealOffsetByAscVersion()
 {
-  // The following plot setup is mostly taken from the plot demos:
-  ui->plot->addGraph();
-  ui->plot->graph()->setLineStyle(QCPGraph::lsStepLeft); // 线的类型
-  ui->plot->graph()->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));    // 每个数据绘制一个示意点
-  ui->plot->graph()->setPen(QPen(QColor(qrand()%100+100, qrand()%100+100, qrand()%100+100, 255))); // 线的颜色
-  ui->plot->graph(lineNum)->setData(times, values);
-  ui->plot->axisRect()->setupFullAxesBox(false);
-  ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+    if( datalist.count() <= 0 )
+    {
+        pushButton_UpdateFile_OnCliecked();
+        if( datalist.count() <= 0 )
+        {
+            ui->statusBar->setText("File Data Size is Zero, Reread File");
+            return;
+        }
+    }
+    QString version = DataUtil::getAscVersion(datalist);
 
+    if( ui->checkBox_OffsetByVersion->isChecked() )
+    {
+        if( version.contains("13.") )
+        {
+            dataOffset = 10;
+            idOffset = 4;
+            ui->lineEdit_signalDataOffset->setText(QString::number(dataOffset));
+            ui->lineEdit_signalIDOffset->setText(QString::number(idOffset));
+        }
+        else if( version.contains("7.") )
+        {
+            dataOffset = 10;
+            idOffset = 3;
+            ui->lineEdit_signalDataOffset->setText(QString::number(dataOffset));
+            ui->lineEdit_signalIDOffset->setText(QString::number(idOffset));
+        }
+        else
+        {
+            dataOffset = ui->lineEdit_signalDataOffset->text().toInt();
+            idOffset = ui->lineEdit_signalIDOffset->text().toInt();
+        }
+    }
+    else
+    {
+        dataOffset = ui->lineEdit_signalDataOffset->text().toInt();
+        idOffset = ui->lineEdit_signalIDOffset->text().toInt();
+    }
+
+    ui->statusBar->setText("asc版本：" + version + " dataOffset:" + QString::number(dataOffset) + " idOffset:" + QString::number(idOffset));
+}
+
+void AscAnalyseForm::setupPlot(QString name, int lineNum, QVector<double> times, QVector<double> values)
+{
+    // The following plot setup is mostly taken from the plot demos:
+    ui->plot->addGraph();
+    ui->plot->graph()->setLineStyle(QCPGraph::lsStepLeft); // 线的类型
+    ui->plot->graph()->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, 5));    // 每个数据绘制一个示意点
+    ui->plot->graph()->setPen(QPen(QColor(qrand()%100+100, qrand()%255, qrand()%255, 255))); // 线的颜色
+    ui->plot->graph(lineNum)->setData(times, values);
+    ui->plot->graph(lineNum)->setName(name);
+    ui->plot->axisRect()->setupFullAxesBox(false);
+    ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+
+    // 显示图例
+    ui->plot->legend->setVisible(true);
+    ui->plot->legend->setFont(QFont("Helvetica",9));
 }
 
 
 void AscAnalyseForm::pushButton_UpdateFile_OnCliecked()
 {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open Asc"), ".", tr("Can Asc File(*.asc)"));
+    ui->statusBar->setText("File Asc fileName :" + fileName);
+    ui->lineEdit->setText(fileName);
     datalist.clear();
     datalist = DataUtil::readAscFile(ui->lineEdit->text());
     qDebug() << "file:" << ui->lineEdit->text() << "datalist.count():" << datalist.count();
@@ -65,7 +120,22 @@ void AscAnalyseForm::pushButton_UpdateSignal_OnCliecked()
         }
     }
 
-    int dataOffset = ui->lineEdit_signalDataOffset->text().toInt();
+    dealOffsetByAscVersion();
+
+    for (int i = ui->plot->plotLayout()->elementCount() - 1; i > 0; i--)
+    {
+        ui->plot->plotLayout()->removeAt(i);
+    }
+    for (int i = ui->plot->plottableCount() - 1; i > 0; i--)
+    {
+        ui->plot->removePlottable(i);
+    }
+    for (int i = ui->plot->graphCount() - 1; i >= 0; i--)
+    {
+        ui->plot->removeGraph(i);
+    }
+
+
     for ( int i = 0; i < model->rowCount(); i++)
     {
 
@@ -73,10 +143,11 @@ void AscAnalyseForm::pushButton_UpdateSignal_OnCliecked()
         int signalOffset = model->item(i,1)->text().toInt();
         int signalLen = model->item(i,2)->text().toInt();
         QString txrx = model->item(i,3)->text();
-        count = DataUtil::readAscSignal(datalist, dataOffset, signalID, signalOffset, signalLen, &times, &values, txrx.contains("Tx"), txrx.contains("Rx"));
+        count = DataUtil::readAscSignal(datalist, dataOffset, idOffset, signalID, signalOffset, signalLen, &times, &values, txrx.contains("Tx"), txrx.contains("Rx"));
         if( count > 0 )
         {
-            setupPlot(i, times, values);
+            QString sigName = QString::number(i)+" 0x"+QString::number(signalID,16)+" bit"+QString::number(signalOffset)+ "-" + QString::number(signalLen);
+            setupPlot(sigName, i, times, values);
 
             foreach (double val, times)
             {
